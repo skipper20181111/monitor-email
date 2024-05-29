@@ -113,6 +113,7 @@ type (
         // 端口
         Port string `json:"port"`
         // 发送邮件用户账号以及密码
+        Send2Who []string `json:"send2who"`
         EmailUser []*EmailUserInfo `json:"emailUser"`
     }
     EmailUserInfo {

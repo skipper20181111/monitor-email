@@ -102,6 +102,7 @@ type EncryptResp struct {
 type EmailInfo struct {
 	Host      string           `json:"host"`
 	Port      string           `json:"port"`
+	Send2Who  []string         `json:"send2who"`
 	EmailUser []*EmailUserInfo `json:"emailUser"`
 }
 
