@@ -12,6 +12,7 @@ const (
 	localCacheExpire = time.Duration(time.Minute * 20)
 	SystemListKey    = "SystemListKey"
 	Keystr           = "W3WxhhoA9E9VIteCYbnhUTxDbtk2nP1Z"
+	EmailListKey     = "EmailListKey"
 )
 
 type ServiceContext struct {

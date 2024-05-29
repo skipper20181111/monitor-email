@@ -1,0 +1,13 @@
+[
+  {
+    "host": "smtp.163.com",
+    "port": "25",
+    "emailUser": [
+      {
+        "user": "17854230845@163.com",
+        "password": "CGLHYIFLUBKQVUQM",
+        "nickName": "CDP集群报警"
+      }
+    ]
+  }
+]

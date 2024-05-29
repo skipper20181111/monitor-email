@@ -99,12 +99,22 @@ type EncryptResp struct {
 	Data *EncryptRp `json:"data"`
 }
 
+type EmailInfo struct {
+	Host      string           `json:"host"`
+	Port      string           `json:"port"`
+	EmailUser []*EmailUserInfo `json:"emailUser"`
+}
+
+type EmailUserInfo struct {
+	User     string `json:"user"`
+	Password string `json:"password"`
+	NickName string `json:"nickName"`
+}
+
 type PostEmailRes struct {
-	Address      []string `json:"address"`
-	SmtpHost     string   `json:"smtpHost"`
-	SmtpNickname string   `json:"smtpNickname"`
-	Subject      string   `json:"subject"`
-	Body         string   `json:"body"`
+	Address []string `json:"address"`
+	Subject string   `json:"subject"`
+	Body    string   `json:"body"`
 }
 
 type PostEmailRp struct {

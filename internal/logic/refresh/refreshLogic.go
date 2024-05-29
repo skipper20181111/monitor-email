@@ -32,6 +32,7 @@ func (l *RefreshLogic) Refresh() (resp *types.RefreshResp, err error) {
 		Msg:  "success",
 	}
 	l.SystemList()
+	l.EmailList()
 	return resp, nil
 }
 func (l *RefreshLogic) SystemList() {
@@ -48,5 +49,21 @@ func (l *RefreshLogic) SystemList() {
 	} else {
 		fmt.Println("解码成功")
 		l.svcCtx.LocalCache.Set(svc.SystemListKey, systemList)
+	}
+}
+func (l *RefreshLogic) EmailList() {
+	emailList := make([]*types.EmailInfo, 0)
+	filePtr, err := os.Open("etc/email.json")
+	if err != nil {
+		return
+	}
+	defer filePtr.Close()
+	decoder := json.NewDecoder(filePtr)
+	err = decoder.Decode(&emailList)
+	if err != nil {
+		fmt.Println("解码失败", err.Error())
+	} else {
+		fmt.Println("解码成功")
+		l.svcCtx.LocalCache.Set(svc.EmailListKey, emailList)
 	}
 }
