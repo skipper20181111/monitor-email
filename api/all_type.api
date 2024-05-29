@@ -107,12 +107,21 @@ type (
 )
 
 type (
-PostEmailRes{
-
-}
-PostEmailResp{
-
-}
+    PostEmailRes {
+        Address []string `json:"address"`
+        SmtpHost string `json:"smtpHost"`
+        SmtpNickname string `json:"smtpNickname"`
+        Subject string `json:"subject"`
+        Body string `json:"body"`
+    }
+    PostEmailRp {
+        Success bool `json:"success"`
+    }
+    PostEmailResp {
+        Code string `json:"code"`
+        Msg string `json:"msg"`
+        Data *PostEmailRp `json:"data"`
+    }
 )
 
 

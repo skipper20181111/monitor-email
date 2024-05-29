@@ -4,6 +4,7 @@ package handler
 import (
 	"net/http"
 
+	email "monitor/internal/handler/email"
 	monitor "monitor/internal/handler/monitor"
 	refresh "monitor/internal/handler/refresh"
 	"monitor/internal/svc"
@@ -42,5 +43,16 @@ func RegisterHandlers(server *rest.Server, serverCtx *svc.ServiceContext) {
 			},
 		},
 		rest.WithPrefix("/refresh"),
+	)
+
+	server.AddRoutes(
+		[]rest.Route{
+			{
+				Method:  http.MethodGet,
+				Path:    "/postemail",
+				Handler: email.PostemailHandler(serverCtx),
+			},
+		},
+		rest.WithPrefix("/email"),
 	)
 }

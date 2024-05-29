@@ -98,3 +98,21 @@ type EncryptResp struct {
 	Msg  string     `json:"msg"`
 	Data *EncryptRp `json:"data"`
 }
+
+type PostEmailRes struct {
+	Address      []string `json:"address"`
+	SmtpHost     string   `json:"smtpHost"`
+	SmtpNickname string   `json:"smtpNickname"`
+	Subject      string   `json:"subject"`
+	Body         string   `json:"body"`
+}
+
+type PostEmailRp struct {
+	Success bool `json:"success"`
+}
+
+type PostEmailResp struct {
+	Code string       `json:"code"`
+	Msg  string       `json:"msg"`
+	Data *PostEmailRp `json:"data"`
+}

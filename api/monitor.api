@@ -36,10 +36,9 @@ service monitor-api {
 	get /refresh () returns (RefreshResp)
 }
 
-
 @server (
-group: email
-prefix : email
+	group: email
+	prefix : email
 )
 service monitor-api{
 	@doc "发送邮件"
