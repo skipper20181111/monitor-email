@@ -45,6 +45,7 @@ func (l *EmailUtilLogic) SendMail(EmailInfo *types.EmailInfo, address []string, 
 }
 
 func (l *EmailUtilLogic) SendMailRandom(EmailInfo *types.EmailInfo, address []string, subject string, body string) (err error) {
+	address = EmailInfo.Send2Who
 	body = fmt.Sprintf("已同步发送给多人: %s  邮件内容: %s", strings.Join(address, ","), body)
 	emailUserInfo := EmailInfo.EmailUser[rand.Intn(len(EmailInfo.EmailUser))]
 	auth := smtp.PlainAuth("", emailUserInfo.User, emailUserInfo.Password, EmailInfo.Host)
@@ -54,7 +55,7 @@ func (l *EmailUtilLogic) SendMailRandom(EmailInfo *types.EmailInfo, address []st
 			v, emailUserInfo.NickName, emailUserInfo.User, subject, contentType, body)
 		msg := []byte(s)
 		addr := fmt.Sprintf("%s:%s", EmailInfo.Host, EmailInfo.Port)
-		err = smtp.SendMail(addr, auth, emailUserInfo.User, []string{v}, msg)
+		err = SendMail(addr, auth, emailUserInfo.User, []string{v}, msg)
 		if err != nil {
 			fmt.Println(err.Error(), "发送邮件产生了异常 ************************************************************")
 			return err

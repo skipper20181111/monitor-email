@@ -8,6 +8,7 @@ import (
 	"fmt"
 	"github.com/zeromicro/go-zero/core/logx"
 	"io/ioutil"
+	"monitor/internal/logic/email"
 	"monitor/internal/svc"
 	"monitor/internal/types"
 	"net/http"
@@ -19,6 +20,7 @@ type HttpConnectorLogic struct {
 	logx.Logger
 	ctx    context.Context
 	svcCtx *svc.ServiceContext
+	pel    *email.PostemailLogic
 }
 
 func NewHttpConnectorLogicLogic(ctx context.Context, svcCtx *svc.ServiceContext) *HttpConnectorLogic {
@@ -26,6 +28,7 @@ func NewHttpConnectorLogicLogic(ctx context.Context, svcCtx *svc.ServiceContext)
 		Logger: logx.WithContext(ctx),
 		ctx:    ctx,
 		svcCtx: svcCtx,
+		pel:    email.NewPostemailLogic(ctx, svcCtx),
 	}
 }
 func GetCacheSession(SystemInfo *types.System) string {
@@ -69,6 +72,11 @@ func (l *HttpConnectorLogic) Report2Shrcb(shrcbMonitorRes *types.ShrcbMonitorRes
 		}
 	}()
 	shrcbresp := &types.ShrcbMonitorResp{}
+	emailres := &types.PostEmailRes{
+		Subject: fmt.Sprintf("集群:%s,title:%s", shrcbMonitorRes.SysNameCn, shrcbMonitorRes.Title),
+		Body:    fmt.Sprintf("集群:%s,HostName:%s,ip:%s,msg:%s", shrcbMonitorRes.SysNameCn, shrcbMonitorRes.HostName, shrcbMonitorRes.IpAddress, shrcbMonitorRes.Msg),
+	}
+	l.pel.Postemail(emailres)
 	marshal, _ := json.Marshal(shrcbMonitorRes)
 	resp, _ := http.Post(l.svcCtx.Config.ServerInfo.Url+shrcbMonitorRes.SysNameEn, "application/json", bytes.NewReader(marshal))
 	//resp, _ := http.Post("http://localhost:58888/monitor/shrcbtest?source="+shrcbMonitorRes.SysNameEn, "application/json", bytes.NewReader(marshal))
