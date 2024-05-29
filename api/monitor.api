@@ -1,0 +1,48 @@
+syntax = "v1"
+
+info(
+	title: "monitor for shrcb CDP"
+	desc: "fuck you,fucking shit world"
+	author: "Mr.Satan"
+	email: "17854230845@163.com"
+	version: "1.1"
+)
+import "all_type.api"
+@server(
+	group: monitor
+	prefix : monitor
+)
+service monitor-api {
+	@doc "发起集中监控"
+	@handler shrcbmonitor
+	post /shrcbmonitor () returns (ShrcbMonitorRespList)
+	
+	@doc "测试行里的监控平台"
+	@handler shrcbtest
+	post /shrcbtest (ShrcbMonitorRes) returns (ShrcbMonitorResp)
+	
+	@doc "加密"
+	@handler encrypt
+	post /encrypt (EncryptRes) returns (EncryptResp)
+}
+
+@server(
+	group: refresh
+	prefix : refresh
+)
+service monitor-api {
+	@doc "发起集中监控"
+	@handler refresh
+	get /refresh () returns (RefreshResp)
+}
+
+
+@server (
+group: email
+prefix : email
+)
+service monitor-api{
+	@doc "发送邮件"
+	@handler postemail
+	get /postemail (PostEmailRes) returns (PostEmailResp)
+}

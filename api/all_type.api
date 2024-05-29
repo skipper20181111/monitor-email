@@ -1,0 +1,120 @@
+syntax = "v1"
+
+info(
+    title: "type title here"
+    desc: "type desc here"
+    author: "type author here"
+    email: "type email here"
+    version: "type version here"
+)
+type (
+    ShrcbMonitorRes {
+        Datetime string `json:"datetime"`
+        HostName string `json:"hostName"`
+        IpAddress string `json:"ipAddress"`
+        Msg string `json:"msg"`
+        Title string `json:"title"`
+        Severity string `json:"severity"`
+        SysNameEn string `json:"sysNameEn"`
+        SysNameCn string `json:"sysNameCn"`
+        BlindTimeMinute int `json:"BlindTimeMinute"`
+    }
+    ShrcbMonitorResp {
+        Msg string `json:"msg"`
+    }
+    ShrcbMonitorRespList {
+        Code string `json:"code"`
+        Msg string `json:"msg"`
+        Data []*ShrcbMonitorResp `json:"data"`
+    }
+    RefreshResp {
+        Code string `json:"code"`
+        Msg string `json:"msg"`
+    }
+)
+type (
+    SystemList {
+        SystemList []*System `json:"SystemList"`
+    }
+    System {
+        SystemNameEn string `json:"SystemNameEn"`
+        SystemNameCn string `json:"SystemNameCn"`
+        InnerIP string `json:"InnerIP"`
+        OuterIP string `json:"OuterIP"`
+        HostName string `json:"HostName"`
+        User string `json:"User"`
+        Passwd string `json:"Passwd"`
+        ClusterName string `json:"ClusterName"`
+        NeedReport map[string]map[string]int `json:"NeedReport"`
+        Severity string `json:"Severity"`
+        //    MAJOR/CRITICAL/OK
+        BlindTimeMinute int `json:"BlindTimeMinute"`
+        TellTheTales bool `json:"TellTheTales"`
+        BlindInsertDatabase bool `json:"BlindInsertDatabase"`
+        ConfirmReportNumber int `json:"ConfirmReportNumber"`
+    }
+    ServicesList {
+        Items []*ApiService `json:"items"`
+    }
+    ApiService {
+        name string `json:"name"`
+        ServiceType string `json:"type"`
+        ClusterRef *ApiClusterRef `json:"clusterRef"`
+        ServiceState string `json:"serviceState"`
+        //    [ HISTORY_NOT_AVAILABLE, UNKNOWN, STARTING, STARTED, STOPPING, STOPPED, NA ]
+        HealthSummary string `json:"healthSummary"`
+        //    [ DISABLED, HISTORY_NOT_AVAILABLE, NOT_AVAILABLE, GOOD, CONCERNING, BAD ]
+        ConfigStale bool `json:"configStale"`
+        ConfigStalenessStatus string `json:"configStalenessStatus"`
+        //    [ FRESH, STALE_REFRESHABLE, STALE ]
+        ClientConfigStalenessStatus string `json:"clientConfigStalenessStatus"`
+        //    [ FRESH, STALE_REFRESHABLE, STALE ]
+        HealthChecks []*ApiHealthCheck `json:"healthChecks"`
+        ServiceUrl string `json:"serviceUrl"`
+        RoleInstancesUrl string `json:"roleInstancesUrl"`
+        MaintenanceMode bool `json:"maintenanceMode"`
+        MaintenanceOwners []string `json:"maintenanceOwners"`
+        //    [ CLUSTER, SERVICE, ROLE, HOST ]
+        DisplayName string `json:"displayName"`
+        ServiceVersion string `json:"serviceVersion"`
+    }
+    ApiClusterRef {
+        ClusterName string `json:"clusterName"`
+        DisplayName string `json:"displayName"`
+    }
+    ApiHealthCheck {
+        Name string `json:"name"`
+        Summary string `json:"summary"`
+        //    [ DISABLED, HISTORY_NOT_AVAILABLE, NOT_AVAILABLE, GOOD, CONCERNING, BAD ]
+        Explanation string `json:"explanation"`
+        Suppressed bool `json:"suppressed"`
+    }
+)
+type (
+    EncryptRes {
+        OriString []string `json:"oriString"`
+        Encrypted []string `json:"encrypted"`
+    }
+    EncryptRp {
+        Encrypted map[string]string `json:"encrypted"`
+        OriString map[string]string `json:"oriString"`
+    }
+    EncryptResp {
+        Code string `json:"code"`
+        Msg string `json:"msg"`
+        Data *EncryptRp `json:"data"`
+    }
+)
+
+type (
+PostEmailRes{
+
+}
+PostEmailResp{
+
+}
+)
+
+
+
+

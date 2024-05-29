@@ -1,0 +1,19 @@
+Name: monitor-api
+Host: 0.0.0.0
+Port: 58888
+
+#ServerInfo:
+#  Url: http://10.20.234.168:5000/api/alarm?source=
+
+ServerInfo:
+  Url: http://localhost:58888/monitor/shrcbtest?source=
+
+DB:
+  DataSource: ruirui:konoYES864*^$@tcp(sh-cynosdbmysql-grp-80umc01k.sql.tencentcdb.com:23940)/scm?charset=utf8&parseTime=true&loc=Asia%2FShanghai
+
+CDP:
+  ServicesUrl: http://%s:7180/api/v45/clusters/%s/services?view=FULL_WITH_HEALTH_CHECK_EXPLANATION
+
+Monitor:
+  TimeGapMinute: 5
+  HistoryKeepDay: 20

@@ -1,0 +1,57 @@
+{
+  "SystemList": [
+    {
+      "SystemNameEn": "ODS2G",
+      "SystemNameCn": "操作型数据存储2代",
+      "InnerIP": "192.168.44.143",
+      "OuterIP": "192.168.44.143",
+      "HostName": "ODS2G01MGT",
+      "User": "admin",
+      "Passwd": "MrXIUHBeJovCrcBoWDcMTW03unb8nnhLLJPT/BKSqcY=",
+      "ClusterName": "aaa",
+      "NeedReport": {
+        "Default": {
+          "BAD": 0,
+          "DISABLED": 0,
+          "CONCERNING": 0
+        },
+        "Impala": {
+          "GOOD": 0
+        },
+        "Hdfs": {
+          "GOOD": 0
+        }
+      },
+      "Severity": "MAJOR",
+      "BlindTimeMinute": 360,
+      "ConfirmReportNumber":2,
+      "TellTheTales": true,
+      "BlindInsertDatabase": true
+    },
+    {
+      "SystemNameEn": "HDQS",
+      "SystemNameCn": "操作型数据存储2代",
+      "InnerIP": "192.168.44.143",
+      "OuterIP": "192.168.44.143",
+      "HostName": "ODS2G01MGT",
+      "User": "admin",
+      "Passwd": "MrXIUHBeJovCrcBoWDcMTW03unb8nnhLLJPT/BKSqcY=",
+      "ClusterName": "aaa",
+      "NeedReport": {
+        "Default": {
+          "BAD": 0,
+          "DISABLED": 0,
+          "CONCERNING": 0
+        },
+        "Zookeeper": {
+          "GOOD": 0
+        }
+      },
+      "Severity": "MAJOR",
+      "BlindTimeMinute": 360,
+      "ConfirmReportNumber":2,
+      "TellTheTales": true,
+      "BlindInsertDatabase": true
+    }
+  ]
+}
