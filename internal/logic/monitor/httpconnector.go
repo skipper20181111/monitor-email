@@ -72,11 +72,6 @@ func (l *HttpConnectorLogic) Report2Shrcb(shrcbMonitorRes *types.ShrcbMonitorRes
 		}
 	}()
 	shrcbresp := &types.ShrcbMonitorResp{}
-	emailres := &types.PostEmailRes{
-		Subject: fmt.Sprintf("集群:%s,title:%s", shrcbMonitorRes.SysNameCn, shrcbMonitorRes.Title),
-		Body:    fmt.Sprintf("集群:%s,HostName:%s,ip:%s,msg:%s", shrcbMonitorRes.SysNameCn, shrcbMonitorRes.HostName, shrcbMonitorRes.IpAddress, shrcbMonitorRes.Msg),
-	}
-	l.pel.Postemail(emailres)
 	marshal, _ := json.Marshal(shrcbMonitorRes)
 	resp, _ := http.Post(l.svcCtx.Config.ServerInfo.Url+shrcbMonitorRes.SysNameEn, "application/json", bytes.NewReader(marshal))
 	//resp, _ := http.Post("http://localhost:58888/monitor/shrcbtest?source="+shrcbMonitorRes.SysNameEn, "application/json", bytes.NewReader(marshal))

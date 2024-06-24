@@ -52,6 +52,11 @@ func RegisterHandlers(server *rest.Server, serverCtx *svc.ServiceContext) {
 				Path:    "/postemail",
 				Handler: email.PostemailHandler(serverCtx),
 			},
+			{
+				Method:  http.MethodPost,
+				Path:    "/easyemail",
+				Handler: email.EasyemailHandler(serverCtx),
+			},
 		},
 		rest.WithPrefix("/email"),
 	)

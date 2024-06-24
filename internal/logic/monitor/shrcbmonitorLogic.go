@@ -5,7 +5,6 @@ import (
 	"encoding/json"
 	"fmt"
 	"monitor/cachemodel"
-	"monitor/internal/logic/email"
 	"monitor/internal/svc"
 	"monitor/internal/types"
 	"time"
@@ -18,7 +17,6 @@ type ShrcbmonitorLogic struct {
 	ctx    context.Context
 	svcCtx *svc.ServiceContext
 	hc     *HttpConnectorLogic
-	pel    *email.PostemailLogic
 }
 
 func NewShrcbmonitorLogic(ctx context.Context, svcCtx *svc.ServiceContext) *ShrcbmonitorLogic {
@@ -27,7 +25,6 @@ func NewShrcbmonitorLogic(ctx context.Context, svcCtx *svc.ServiceContext) *Shrc
 		ctx:    ctx,
 		svcCtx: svcCtx,
 		hc:     NewHttpConnectorLogicLogic(ctx, svcCtx),
-		pel:    email.NewPostemailLogic(ctx, svcCtx),
 	}
 }
 
@@ -130,7 +127,7 @@ func (l *ShrcbmonitorLogic) InsertDatabase(SystemInfo *types.System) {
 			Subject: fmt.Sprintf("集群:%s,title:%s", monitorRes.SysNameCn, monitorRes.Title),
 			Body:    fmt.Sprintf("集群:%s,HostName:%s,ip:%s,msg:%s", monitorRes.SysNameCn, monitorRes.HostName, monitorRes.IpAddress, monitorRes.Msg),
 		}
-		l.pel.Postemail(emailres)
+		l.hc.pel.Postemail(emailres)
 		shrcbMonitor := &cachemodel.ShrcbMonitor{
 			Reported:       0,
 			SystemName:     SystemInfo.SystemNameEn,

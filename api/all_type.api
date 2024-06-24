@@ -137,6 +137,20 @@ type (
         Msg string `json:"msg"`
         Data *PostEmailRp `json:"data"`
     }
+    EasyEmailRes {
+        Send2Who []string `json:"send2who"`
+        EmailUser []*EmailUserInfo `json:"emailUser"`
+        Subject string `json:"subject"`
+        Body string `json:"body"`
+    }
+    EasyEmailRp {
+        Success bool `json:"success"`
+    }
+    EasyEmailResp {
+        Code string `json:"code"`
+        Msg string `json:"msg"`
+        Data *PostEmailRp `json:"data"`
+    }
 )
 
 

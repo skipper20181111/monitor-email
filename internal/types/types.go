@@ -127,3 +127,20 @@ type PostEmailResp struct {
 	Msg  string       `json:"msg"`
 	Data *PostEmailRp `json:"data"`
 }
+
+type EasyEmailRes struct {
+	Send2Who  []string         `json:"send2who"`
+	EmailUser []*EmailUserInfo `json:"emailUser"`
+	Subject   string           `json:"subject"`
+	Body      string           `json:"body"`
+}
+
+type EasyEmailRp struct {
+	Success bool `json:"success"`
+}
+
+type EasyEmailResp struct {
+	Code string       `json:"code"`
+	Msg  string       `json:"msg"`
+	Data *PostEmailRp `json:"data"`
+}
